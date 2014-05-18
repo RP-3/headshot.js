@@ -1,3 +1,6 @@
+//returns object whose properties are standardised references to 
+//browser-specific media-interaction functions
+
 var compatibility = (function() {
         var lastTime = 0,
         isLittleEndian = true,

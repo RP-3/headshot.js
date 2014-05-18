@@ -1,39 +1,42 @@
+//three constructor functions calculating rendering timing and statistics and providing access to them
+//as variables and pre-rendered HTML
+
 var stopwatch = (function() {
-    "use strict";
-    //
-    function stopwatch() {
+    "use strict"; //restricts loose behaviours (such as silent errors), patches mistakes to increase run-time 
+    //engine's speed and prohibits changes wrought by future ECMAscript versions 
+    function stopwatch() { //stopwatch constructor function
         this.start_time = 0;
         this.stop_time = 0;
         this.run_time = 0;
         this.running = false;
     }
-
-    stopwatch.prototype.start = function() {
-        this.start_time = new Date().getTime();
+    //realistically, these prototypes *should* be defined outside the constructor function, right?
+    stopwatch.prototype.start = function() { //sets instance's start time to now and it's running value to true
+        this.start_time = new Date().getTime(); 
         this.running = true;
     }
 
-    stopwatch.prototype.stop = function() {
+    stopwatch.prototype.stop = function() { //sets stop time, run time and running value
         this.stop_time = new Date().getTime();
         this.run_time = (this.stop_time - this.start_time);
         this.running = false;
     }
 
-    stopwatch.prototype.get_runtime = function() {
+    stopwatch.prototype.get_runtime = function() { //returns run time.
         return this.run_time;
     }
 
-    stopwatch.prototype.reset = function() {
+    stopwatch.prototype.reset = function() { //resets run time. other properties remain accessible until start() invoked again
         this.run_time = 0;
     }
 
     return stopwatch;
 })();
 
-var ring_buffer = (function() {
+var ring_buffer = (function() { //ring buffer constructor (contains another constructor?)
     "use strict";
     
-    function ring_buffer(size) {
+    function ring_buffer(size) { // unclear on why we're naming functions identically... run time vs compile time?
         this.arr = new Int32Array(size);
         this.begin = 0;
         this.end = -1;
@@ -41,7 +44,7 @@ var ring_buffer = (function() {
         this.arr_size = size;
     }
 
-    ring_buffer.prototype.push_back = function(elem) {
+    ring_buffer.prototype.push_back = function(elem) { //array altering functions. Assuming functionality is hidden inside API
         if (this.num_el<this.arr_size) {
             this.end++;
             this.arr[this.end] = elem;
@@ -65,7 +68,7 @@ var ring_buffer = (function() {
 
 })();
 
-var profiler = (function() {
+var profiler = (function() { //profiler constructor function
     "use strict";
     //
     var count_frames = 0;
