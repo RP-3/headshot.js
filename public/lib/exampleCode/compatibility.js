@@ -4,31 +4,32 @@ var compatibility = (function() {
 
         URL = window.URL || window.webkitURL,
 
-        requestAnimationFrame = function(callback, element) {
+        requestAnimationFrame = function(callback, element) { //modifies current frame of 'element'
             var requestAnimationFrame =
                 window.requestAnimationFrame || 
                 function(callback, element) {
                     var currTime = new Date().getTime();
-                    var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+                    var timeToCall = Math.max(0, 16 - (currTime - lastTime)); //ensures 16ms between frames
                     var id = window.setTimeout(function() {
                         callback(currTime + timeToCall);
                     }, timeToCall);
                     lastTime = currTime + timeToCall;
-                    return id;
+                    return id; //passed to cancelAnimationFrame to stop next invokation of setTimeout
                 };
 
             return requestAnimationFrame.call(window, callback, element);
         },
 
-        cancelAnimationFrame = function(id) {
-            var cancelAnimationFrame = window.cancelAnimationFrame ||
-                                        function(id) {
-                                            clearTimeout(id);
-                                        };
+        cancelAnimationFrame = function(id) { //cancels queued animation frame, whose id is given by its setTimeout
+            var cancelAnimationFrame = 
+            window.cancelAnimationFrame ||
+            function(id) {
+                clearTimeout(id);
+            };
             return cancelAnimationFrame.call(window, id);
         },
 
-        getUserMedia = function(options, success, error) {
+        getUserMedia = function(options, success, error) { //gets permission to use media, invokes callback
             var getUserMedia =
                 window.navigator.webkitGetUserMedia ||
                 function(options, success, error) {
@@ -38,15 +39,15 @@ var compatibility = (function() {
             return getUserMedia.call(window.navigator, options, success, error);
         },
 
-        detectEndian = function() {
-            var buf = new ArrayBuffer(8);
-            var data = new Uint32Array(buf);
-            data[0] = 0xff000000;
+        detectEndian = function() { //binary arrays
+            var buf = new ArrayBuffer(8); //8bit binary array
+            var data = new Uint32Array(buf); //32bit binary array
+            data[0] = 0xff000000; //sets value of array to positive
             isLittleEndian = true;
-            if (buf[0] === 0xff) {
+            if (buf[0] === 0xff) { //if false === all bits are zero, i.e., all bits are zero
                 isLittleEndian = false;
             }
-            return isLittleEndian;
+            return isLittleEndian; //tests is all bits in given array are false
         };
 
     return {
