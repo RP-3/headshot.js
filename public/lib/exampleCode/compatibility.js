@@ -30,10 +30,7 @@ var compatibility = (function() {
 
         getUserMedia = function(options, success, error) {
             var getUserMedia =
-                window.navigator.getUserMedia ||
-                window.navigator.mozGetUserMedia ||
                 window.navigator.webkitGetUserMedia ||
-                window.navigator.msGetUserMedia ||
                 function(options, success, error) {
                     error();
                 };
