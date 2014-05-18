@@ -1,7 +1,7 @@
 $(window).load(function() {
     "use strict";
 
-    // lets do some fun
+    // initialises canvas and video stream, getting permissions and erroring otherwise
     var video = document.getElementById('webcam');
     var canvas = document.getElementById('canvas');
     try {
@@ -30,12 +30,12 @@ $(window).load(function() {
         $('#no_rtc').show();
     }
 
-    var stat = new profiler();
+    var stat = new profiler(); //initialise profiler and defined in profiler.js
 
     var gui,options,ctx,canvasWidth,canvasHeight;
     var curr_img_pyr, prev_img_pyr, point_count, point_status, prev_xy, curr_xy;
 
-    var demo_opt = function(){
+    var demo_opt = function(){ //can be changed through jquery. controls defined in dat.gui.min.js <div class='dg main a'> in index.HTML
         this.win_size = 20;
         this.max_iterations = 30;
         this.epsilon = 0.01;
@@ -43,11 +43,11 @@ $(window).load(function() {
     }
 
     function demo_app() {
-        canvasWidth  = canvas.width;
+        canvasWidth  = canvas.width; //size as defined in index.HTML
         canvasHeight = canvas.height;
-        ctx = canvas.getContext('2d');
+        ctx = canvas.getContext('2d'); //specifies 2D as opposed to webGL etc.
 
-        ctx.fillStyle = "rgb(0,255,0)";
+        ctx.fillStyle = "rgb(0,255,0)"; //sets both fills and strokes to pure green
         ctx.strokeStyle = "rgb(0,255,0)";
 
         curr_img_pyr = new jsfeat.pyramid_t(3);
@@ -61,7 +61,7 @@ $(window).load(function() {
         curr_xy = new Float32Array(100*2);
 
         options = new demo_opt();
-        gui = new dat.GUI();
+        gui = new dat.GUI(); //defined in http://workshop.chromeexperiments.com/examples/gui/#1--Basic-Usage
 
         gui.add(options, 'win_size', 7, 30).step(1);
         gui.add(options, 'max_iterations', 3, 30).step(1);
@@ -76,9 +76,9 @@ $(window).load(function() {
     function tick() {
         compatibility.requestAnimationFrame(tick);
         stat.new_frame();
-        if (video.readyState === video.HAVE_ENOUGH_DATA) {
-            ctx.drawImage(video, 0, 0, 640, 480);
-            var imageData = ctx.getImageData(0, 0, 640, 480);
+        if (video.readyState === video.HAVE_ENOUGH_DATA) { //readyState is integer from 0-4. 4 === best possible state
+            ctx.drawImage(video, 0, 0, 640, 480); //draw over canvas spanning 460x480
+            var imageData = ctx.getImageData(0, 0, 640, 480); //is an imageData object https://developer.mozilla.org/en-US/docs/Web/API/ImageData
 
             // swap flow data
             var _pt_xy = prev_xy;
