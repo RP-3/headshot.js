@@ -27,13 +27,52 @@ var light = new THREE.PointLight(0xFFFF00);
 light.position.set(10, 10, 10);
 scene.add(light);
 
+var ambientLight = new THREE.AmbientLight(0x000044);
+scene.add(ambientLight);
+
 //render scene
 renderer.render(scene, camera);
 
 //initialise simple animation function
 var animate = function(){
-	mesh.rotation.x += 0.05;
-	mesh.rotation.y += 0.05;
+	setCamPos();
 	renderer.render(scene, camera);
 	requestAnimationFrame(animate);
 }
+
+//change camera position based on input from extractedValues
+var setCamPos = function(cam){
+	var cam = cam || camera; //if cam undefined, set cam to globally defined camera
+
+	var camPos = extractedValues.getProjectedPosition()
+
+	cam.position.set(
+		camPos[0] - extractedValues.offSet[0],
+		camPos[1] - extractedValues.offSet[1],
+		camPos[2]
+		);
+
+	cam.lookAt(mesh.position);
+	renderer.render(scene, camera);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
