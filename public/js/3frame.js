@@ -13,9 +13,9 @@ var camera = new THREE.PerspectiveCamera(
 	.1,  //near value
 	10000 //far value
 );
-camera.position.set( -15, 10, 15); //all coordinates given as x, y, z in arbitrary units
+camera.position.set( 0, 0, 15); //all coordinates given as x, y, z in arbitrary units
 
-//random color generator for cube
+//random color generator
 var getRandomColor = function() {
     var letters = '0123456789ABCDEF'.split('');
     var color = '#';
@@ -25,9 +25,9 @@ var getRandomColor = function() {
     return color;
 }
 
-//random position generator for cube
+//random position generator
 var setRandomPosition = function(subject){
-	var max = 5;
+	var max = camera.position.z - 10;
 
 	var orient = function(){ return (Math.random() > 0.5) ? 1 : -1;}
 
@@ -43,21 +43,19 @@ var cubeMaker = function(pox, posy, posz, maxSize){
 	var maxSize = maxSize || 2;
 	var size = Math.random() * maxSize;
 	var geometry = new THREE.BoxGeometry(size, size, size);
-	var material = new THREE.MeshLambertMaterial( {color: function(){return getRandomColor();} } );
+	var material = new THREE.MeshLambertMaterial( {color: getRandomColor() }); 
 	var mesh = new THREE.Mesh(geometry, material);
 	setRandomPosition(mesh); console.log(mesh.position);
 	scene.add(mesh);
 }
 
 //set up some light sources
-var light = new THREE.PointLight(0xFFFF00);
-light.position.set(10, 10, 10);
+var light = new THREE.PointLight(0xffffff);
+light.position.set(0, 0, 0);
 scene.add(light);
-var ambientLight = new THREE.AmbientLight(0x000044);
-scene.add(ambientLight);
 
 //set up screen point for camera to focus on (this will equate to our device's screen)
-var scn = new THREE.Vector3(0, 0, 0);
+var scn = new THREE.Vector3(0, 0, -10);
 
 //render scene
 renderer.render(scene, camera);
@@ -66,6 +64,7 @@ renderer.render(scene, camera);
 var animate = function(){
 	setCamPos();
 	camera.lookAt(scene.position);
+	light.position = camera.position;
 	renderer.render(scene, camera);
 	requestAnimationFrame(animate);
 }
