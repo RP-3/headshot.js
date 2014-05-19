@@ -57,8 +57,11 @@ $(window).load(function() {
 
         point_count = 0;
         point_status = new Uint8Array(100);
-        prev_xy = new Float32Array(100*2);
-        curr_xy = new Float32Array(100*2);
+        prev_xy = new Float32Array(10*2);
+        curr_xy = new Float32Array(10*2); //200-element array storing  up to 100 x, y coords in series. 
+        extractedValues.coords = function(nth){
+            return [ curr_xy[nth<<1], curr_xy[(nth<<1)+1] ]; //returns x-y pairs of nth coordinate pair (zero indexed)
+        };  
 
         options = new demo_opt();
         gui = new dat.GUI(); //defined in http://workshop.chromeexperiments.com/examples/gui/#1--Basic-Usage
@@ -111,6 +114,7 @@ $(window).load(function() {
         if(coords.x > 0 & coords.y > 0 & coords.x < canvasWidth & coords.y < canvasHeight) {
             curr_xy[point_count<<1] = coords.x;
             curr_xy[(point_count<<1)+1] = coords.y;
+            console.log(curr_xy);
             point_count++;
         }
     }
