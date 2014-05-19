@@ -26,6 +26,9 @@ extractedValues.getScalingFactor = function(scalingArray, aspectArray){
 	scalingArray[0] >> 1,	   //with threejs world origin
 	scalingArray[1] >> 1
 	]
+
+	extractedValues.xMax = scalingArray[0];
+	extractedValues.yMax = scalingArray[1];
 }
 
 extractedValues.getProjectedPosition = function(currentZ){
@@ -34,8 +37,8 @@ extractedValues.getProjectedPosition = function(currentZ){
 	var cameraPosition = extractedValues.getCameraPosition();
 
 	return [
-	extractedValues.scalingFactor[0] * cameraPosition[0],
-	extractedValues.scalingFactor[1] * cameraPosition[1],
+	extractedValues.xMax - (extractedValues.scalingFactor[0] * cameraPosition[0]),
+	extractedValues.yMax - (extractedValues.scalingFactor[1] * cameraPosition[1]),
 	currentZ
 	];
 }
