@@ -12,3 +12,13 @@ extractedValues.getCameraPosition = function(){
 
 	return [xOut, yOut];
 }
+
+var getScalingFactor = function(scalingArray, aspectArray){
+	aspectArray = aspectArray || [640, 480]; //default to aspect ratio of 640x480
+	scalingArray = scalingArray || [10, 7.5]; //default to given scaling array
+
+	return [
+	scalingArray[0]/aspectArray[0],
+	scalingArray[1]/aspectArray[1]
+	]
+}
