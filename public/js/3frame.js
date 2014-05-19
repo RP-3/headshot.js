@@ -25,13 +25,27 @@ var getRandomColor = function() {
     return color;
 }
 
+//random position generator for cube
+var setRandomPosition = function(subject){
+	var max = 5;
+
+	var orient = function(){ return (Math.random() > 0.5) ? 1 : -1;}
+
+	subject.position.set(
+		orient() * Math.random() * max,
+		orient() * Math.random() * max,
+		orient() * Math.random() * max
+		);
+}
+
 //set up basic cube constructor
-var cubeMaker = function(maxSize){
-	var maxSize = maxSize || 5;
+var cubeMaker = function(pox, posy, posz, maxSize){
+	var maxSize = maxSize || 2;
 	var size = Math.random() * maxSize;
 	var geometry = new THREE.BoxGeometry(size, size, size);
 	var material = new THREE.MeshLambertMaterial( {color: function(){return getRandomColor();} } );
 	var mesh = new THREE.Mesh(geometry, material);
+	setRandomPosition(mesh); console.log(mesh.position);
 	scene.add(mesh);
 }
 
