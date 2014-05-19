@@ -29,3 +29,11 @@ scene.add(light);
 
 //render scene
 renderer.render(scene, camera);
+
+//initialise simple animation function
+var animate = function(){
+	mesh.rotation.x += 0.05;
+	mesh.rotation.y += 0.05;
+	renderer.render(scene, camera);
+	requestAnimationFrame(animate);
+}
