@@ -56,9 +56,9 @@ $(window).load(function() {
         prev_img_pyr.allocate(640, 480, jsfeat.U8_t|jsfeat.C1_t);
 
         point_count = 0;
-        point_status = new Uint8Array(100);
-        prev_xy = new Float32Array(10*2);
-        curr_xy = new Float32Array(10*2); //200-element array storing  up to 100 x, y coords in series. 
+        point_status = new Uint8Array(5);
+        prev_xy = new Float32Array(5*2);
+        curr_xy = new Float32Array(5*2); //200-element array storing  up to 100 x, y coords in series. 
         extractedValues.coords = function(nth){
             return [ curr_xy[nth<<1], curr_xy[(nth<<1)+1] ]; //returns x-y pairs of nth coordinate pair (zero indexed)
         };  
@@ -112,9 +112,9 @@ $(window).load(function() {
     function on_canvas_click(e) {
         var coords = canvas.relMouseCoords(e);
         if(coords.x > 0 & coords.y > 0 & coords.x < canvasWidth & coords.y < canvasHeight) {
+            if(point_count === 2){point_count = 0;} //allow a maximum of two points
             curr_xy[point_count<<1] = coords.x;
             curr_xy[(point_count<<1)+1] = coords.y;
-            console.log(curr_xy);
             point_count++;
         }
     }
