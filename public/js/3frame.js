@@ -14,21 +14,36 @@ var camera = new THREE.PerspectiveCamera(
 	10000 //far value
 );
 camera.position.set( -15, 10, 15); //all coordinates given as x, y, z in arbitrary units
-camera.lookAt(scene.position);
 
-//set up basic cube
-var geometry = new THREE.BoxGeometry(5, 5, 5);
-var material = new THREE.MeshLambertMaterial( {color: 0xFF0000} );
-var mesh = new THREE.Mesh(geometry, material);
-scene.add(mesh);
+//random color generator for cube
+var getRandomColor = function() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
 
-//set up light source
+//set up basic cube constructor
+var cubeMaker = function(maxSize){
+	var maxSize = maxSize || 5;
+	var size = Math.random() * maxSize;
+	var geometry = new THREE.BoxGeometry(size, size, size);
+	var material = new THREE.MeshLambertMaterial( {color: function(){return getRandomColor();} } );
+	var mesh = new THREE.Mesh(geometry, material);
+	scene.add(mesh);
+}
+
+//set up some light sources
 var light = new THREE.PointLight(0xFFFF00);
 light.position.set(10, 10, 10);
 scene.add(light);
-
 var ambientLight = new THREE.AmbientLight(0x000044);
 scene.add(ambientLight);
+
+//set up screen point for camera to focus on (this will equate to our device's screen)
+var scn = new THREE.Vector3(0, 0, 0);
 
 //render scene
 renderer.render(scene, camera);
@@ -36,6 +51,7 @@ renderer.render(scene, camera);
 //initialise simple animation function
 var animate = function(){
 	setCamPos();
+	camera.lookAt(scene.position);
 	renderer.render(scene, camera);
 	requestAnimationFrame(animate);
 }
@@ -43,21 +59,13 @@ var animate = function(){
 //change camera position based on input from extractedValues
 var setCamPos = function(cam){
 	var cam = cam || camera; //if cam undefined, set cam to globally defined camera
-
 	var camPos = extractedValues.getProjectedPosition()
-
 	cam.position.set(
 		camPos[0] - extractedValues.offSet[0],
 		camPos[1] - extractedValues.offSet[1],
 		camPos[2]
 		);
-
-	cam.lookAt(mesh.position);
-	renderer.render(scene, camera);
 }
-
-
-
 
 
 
