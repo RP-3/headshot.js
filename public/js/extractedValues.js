@@ -13,23 +13,31 @@ extractedValues.getCameraPosition = function(){
 	return [xOut, yOut];
 }
 
-extactedValues.getScalingFactor = function(scalingArray, aspectArray){
-	aspectArray = aspectArray || [640, 480]; //default to aspect ratio of 640x480
-	scalingArray = scalingArray || [10, 7.5]; //default to given scaling array
+extractedValues.getScalingFactor = function(scalingArray, aspectArray){
+	var aspectArray = aspectArray || [640, 480]; //default to aspect ratio of 640x480
+	var scalingArray = scalingArray || [10, 7.5]; //default to given scaling array
 
 	extractedValues.scalingFactor =  [
 	scalingArray[0]/aspectArray[0],
 	scalingArray[1]/aspectArray[1]
 	];
+
+	extractedValues.offSet = [ //subtract half of scaling array such that webcam vertex is inline 
+	scalingArray[0] >> 1,	   //with threejs world origin
+	scalingArray[1] >> 1
+	]
 }
 
 extractedValues.getProjectedPosition = function(currentZ){
-	currentZ = currentZ || 15; //default camera distance from scene origin to 15
+	var currentZ = currentZ || 15; //default camera distance from scene origin to 15
 
 	var cameraPosition = extractedValues.getCameraPosition();
 
 	return [
 	extractedValues.scalingFactor[0] * cameraPosition[0],
-	extractedValues.scalingFactor[1] * cameraPosition[1]
+	extractedValues.scalingFactor[1] * cameraPosition[1],
+	currentZ
 	];
 }
+
+extractedValues.getScalingFactor();
