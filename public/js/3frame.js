@@ -54,7 +54,11 @@ var cubeMaker = function(pox, posy, posz, maxSize){
 
 var dropCubes = function(){
 	for (var i=0; i<cubes.length; i++){
-		cubes[i].translateZ(0.1);
+		if(cubes[i].position.z > camera.position.z){
+			cubes.splice(i, 1);
+		}else{
+			cubes[i].translateZ(0.1);
+		}
 	}
 }
 
