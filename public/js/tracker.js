@@ -35,6 +35,10 @@ tracker.checkVectors = function(){
 tracker.hitCount = 0;
 tracker.fired = 0;
 tracker.accuracy;
+tracker.missed = 0;
 tracker.updateAccuracy = function(){
-	return(tracker.hitCount/tracker.fired)*100
+	tracker.accuracy = (tracker.hitCount/tracker.fired)*100;
+	$('#fired').text(tracker.fired + " shots fired");
+	$('#hit').text(tracker.hitCount + " targets destroyed");
+	$('#accuracy').text(Math.floor(tracker.accuracy) + "% hit rate");
 };
