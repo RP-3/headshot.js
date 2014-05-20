@@ -58,7 +58,7 @@ var dropCubes = function(){
 			scene.remove(cubes[i])
 			cubes.splice(i, 1);
 		}else{
-			cubes[i].translateZ(0.1);
+			cubes[i].translateZ(0.05);
 		}
 	}
 }
@@ -69,7 +69,7 @@ light.position.set(0, 0, 0);
 scene.add(light);
 
 //set up screen point for camera to focus on (this will equate to our device's screen)
-var scn = new THREE.Vector3(0, 0, -20);
+var scn = new THREE.Vector3(0, 0, -10);
 
 //render scene
 renderer.render(scene, camera);
