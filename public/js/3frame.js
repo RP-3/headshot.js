@@ -34,7 +34,7 @@ var setRandomPosition = function(subject){
 	subject.position.set(
 		orient() * Math.random() * max,
 		orient() * Math.random() * max,
-		camera.position.z - (Math.random() * roomData.depth * 2) - 20
+		camera.position.z - (Math.random() * roomData.depth * 2) - 40
 		);
 }
 
