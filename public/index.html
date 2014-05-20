@@ -2,26 +2,39 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title></title>
-        <style>
-			#log {
-			    float: right;
-			    font-family: monospace;
-
-			},
-			#camContainer {
-				background-color: black;
-			}
-		</style>
+        <title>headshot.js</title>
+        <link rel='stylesheet' type='text/css' href='./style.css'>
     </head>
     <body>
     	<video id="webcam" width="640" height="480" style="display:none;"></video>
-    	<div id="camContainer">
+    	<div class="camContainer">
             <canvas id="canvas" width="640" height="480"></canvas>
             <div id="no_rtc" class="alert alert-error" style="display:none;"></div>
-	        <div id="log" class="alert alert-info"></div>
+	        <div class='dashboard'>
+                
+                <div id="log" class="alert alert-info"></div>
+                <p>
+                    Click on any two contrasty parts of your face to activate tracking; nostrils work best--eyes sometimes blink too much. The green dots on the left indicate a lock on your face. When you're ready, scroll down and hit 0. 
+                </P>
+                <p>
+                    Got it? Pick a difficulty and start shooting (spacebar to shoot) or hit 1 to instantiate some targets for practice. 
+                </p>
+                <div class="onoffswitch">
+                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="trackStatus" unchecked>
+                    <label class="onoffswitch-label" for="trackStatus">
+                        <span class="onoffswitch-inner"></span>
+                        <span class="onoffswitch-switch"></span>
+                    </label>
+                </div>
+                <p id='fired'></p>
+                <p id='hit'></p>
+                <p id='missed'></p>
+                <p id='accuracy'></p>
+            </div>
         </div>
         <br/>
+        <!-- <div id='scoreboard'></div> -->
+
     	<script src='./js/extractedValues.js'></script>
     	<script src='./lib/exampleCode/jsfeat-min.js'></script>
     	<script src='./bower_components/threejs/build/three.min.js'></script>
