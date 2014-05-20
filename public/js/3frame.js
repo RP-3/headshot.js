@@ -76,6 +76,7 @@ renderer.render(scene, camera);
 //initialise simple animation function
 var animate = function(){
 	dropCubes();
+	laser.moveProjectiles();
 	setCamPos();
 	camera.lookAt(scene.position);
 	light.position = camera.position;
