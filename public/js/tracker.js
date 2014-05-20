@@ -48,6 +48,7 @@ tracker.difficulty = 1;
 tracker.game;
 
 tracker.play = function(){
+	tracker.stop();
 	tracker.game = setInterval(function(){
 		cubeMaker();
 	}, (1/tracker.difficulty)*2000)
