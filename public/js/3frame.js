@@ -34,9 +34,11 @@ var setRandomPosition = function(subject){
 	subject.position.set(
 		orient() * Math.random() * max,
 		orient() * Math.random() * max,
-		orient() * Math.random() * max
+		camera.position.z - (Math.random() * roomData.depth * 2)
 		);
 }
+
+var cubes = []; //storage array for cubes
 
 //set up basic cube constructor
 var cubeMaker = function(pox, posy, posz, maxSize){
@@ -46,7 +48,14 @@ var cubeMaker = function(pox, posy, posz, maxSize){
 	var material = new THREE.MeshLambertMaterial( {color: getRandomColor() }); 
 	var mesh = new THREE.Mesh(geometry, material);
 	setRandomPosition(mesh); console.log(mesh.position);
+	cubes.push(mesh);
 	scene.add(mesh);
+}
+
+var dropCubes = function(){
+	for (var i=0; i<cubes.length; i++){
+		cubes[i].translateZ(0.1);
+	}
 }
 
 //set up some light sources
@@ -62,6 +71,7 @@ renderer.render(scene, camera);
 
 //initialise simple animation function
 var animate = function(){
+	dropCubes();
 	setCamPos();
 	camera.lookAt(scene.position);
 	light.position = camera.position;
