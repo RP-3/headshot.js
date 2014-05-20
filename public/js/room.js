@@ -1,4 +1,6 @@
 //set up axes lines for orientation
+var roomData = {};
+
 
 var lineMaterial = new THREE.LineBasicMaterial({
 	color: getRandomColor()
@@ -21,9 +23,10 @@ var setAxes = function(){
 	scene.add(yAxis);
 }
 
-setAxes();
-
 var generateRoom = function(ceilHeight, roomWidth, roomDepth){
+	roomData.height = ceilHeight;
+	roomData.width = roomWidth;
+	roomData.depth = roomDepth;
 
 	var genHorizontalPlane = function(ceilHeight, roomDepth){
 		for (var i= -roomWidth; i<roomWidth; i++){
@@ -80,6 +83,8 @@ var generateRoom = function(ceilHeight, roomWidth, roomDepth){
 	genCrossVertical(roomDepth, -roomWidth, ceilHeight);
 }
 
+setAxes();
+generateRoom(5, 5, 50);
 
 
 
