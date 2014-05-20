@@ -42,3 +42,17 @@ tracker.updateAccuracy = function(){
 	$('#hit').text(tracker.hitCount + " targets destroyed");
 	$('#accuracy').text(Math.floor(tracker.accuracy) + "% hit rate");
 };
+
+tracker.difficulty = 1;
+
+tracker.game;
+
+tracker.play = function(){
+	tracker.game = setInterval(function(){
+		cubeMaker();
+	}, (1/tracker.difficulty)*2000)
+}
+
+tracker.stop = function(){
+	clearInterval(tracker.game);
+}
