@@ -27,6 +27,7 @@ laser.fire = function(){
 	projectile.vectrix = vectrix;
 	laser.projectiles.push(projectile);
 	scene.add(projectile);
+	tracker.checkVectors();
 }
 
 laser.moveProjectiles = function(){
