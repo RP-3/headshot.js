@@ -17,11 +17,8 @@ tracker.getCone = function(target){
 	var camPosX = camera.position.x + roomData.width;
 	var camPosY = camera.position.y + roomData.width;
 
-	console.log(camPosX, xMin, xMax);
-	console.log(camPosY, yMin, yMax);
-
 	if ((camPosX < xMin) && (camPosX > xMax) && (camPosY < yMin) && (camPosY > yMax)){
-		console.log('target Destroyed!');
+		tracker.hitCount++;
 		return true;
 	}
 }
@@ -34,3 +31,10 @@ tracker.checkVectors = function(){
 		}
 	}
 }
+
+tracker.hitCount = 0;
+tracker.fired = 0;
+tracker.accuracy;
+tracker.updateAccuracy = function(){
+	return(tracker.hitCount/tracker.fired)*100
+};

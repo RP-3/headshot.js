@@ -69,7 +69,7 @@ light.position.set(0, 0, 0);
 scene.add(light);
 
 //set up screen point for camera to focus on (this will equate to our device's screen)
-var scn = new THREE.Vector3(0, 0, -10);
+var scn = new THREE.Vector3(0, 0, 0);
 
 //render scene
 renderer.render(scene, camera);

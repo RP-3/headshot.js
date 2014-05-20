@@ -28,6 +28,10 @@ laser.fire = function(){
 	laser.projectiles.push(projectile);
 	scene.add(projectile);
 	tracker.checkVectors();
+
+	tracker.fired++;
+	tracker.accuracy = tracker.updateAccuracy();
+	console.log(tracker.accuracy);
 }
 
 laser.moveProjectiles = function(){
