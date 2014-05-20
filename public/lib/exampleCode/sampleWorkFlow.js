@@ -64,12 +64,12 @@ $(window).load(function() {
         };  
 
         options = new demo_opt();
-        gui = new dat.GUI(); //defined in http://workshop.chromeexperiments.com/examples/gui/#1--Basic-Usage
+        // gui = new dat.GUI(); //defined in http://workshop.chromeexperiments.com/examples/gui/#1--Basic-Usage
 
-        gui.add(options, 'win_size', 7, 30).step(1);
-        gui.add(options, 'max_iterations', 3, 30).step(1);
-        gui.add(options, 'epsilon', 0.001, 0.1).step(0.0025);
-        gui.add(options, 'min_eigen', 0.001, 0.01).step(0.0025);
+        // gui.add(options, 'win_size', 7, 30).step(1);
+        // gui.add(options, 'max_iterations', 3, 30).step(1);
+        // gui.add(options, 'epsilon', 0.001, 0.1).step(0.0025);
+        // gui.add(options, 'min_eigen', 0.001, 0.01).step(0.0025);
 
         stat.add("grayscale");
         stat.add("build image pyramid");

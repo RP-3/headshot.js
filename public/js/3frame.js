@@ -1,6 +1,6 @@
 //set up basic webGL renderer
 var renderer = new THREE.WebGLRenderer();
-renderer.setSize( 640, 480 );
+renderer.setSize( window.innerWidth, window.innerWidth*0.75 );
 renderer.domElement.setAttribute('id', 'renderer');
 document.body.appendChild( renderer.domElement );
 
