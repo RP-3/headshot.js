@@ -7,6 +7,10 @@ body{
     background-color:#282828;
     background-size:16px 16px;
 }
+h1{
+    font-family: monospace;
+    color: white;
+}
 .dashboard {
     float: right;
     font-family: monospace;
