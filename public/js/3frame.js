@@ -27,14 +27,14 @@ var getRandomColor = function() {
 
 //random position generator
 var setRandomPosition = function(subject){
-	var max = camera.position.z - 10;
+	var max = camera.position.z - 8;
 
 	var orient = function(){ return (Math.random() > 0.5) ? 1 : -1;}
 
 	subject.position.set(
 		orient() * Math.random() * max,
 		orient() * Math.random() * max,
-		camera.position.z - (Math.random() * roomData.depth * 2)
+		camera.position.z - (Math.random() * roomData.depth * 2) - 20
 		);
 }
 
@@ -55,6 +55,10 @@ var cubeMaker = function(pox, posy, posz, maxSize){
 var dropCubes = function(){
 	for (var i=0; i<cubes.length; i++){
 		if(cubes[i].position.z > camera.position.z){
+			if(Math.abs(cubes[i].position.x) < roomData.width && Math.abs(cubes[i].position.y) < roomData.height){
+				tracker.missed++;
+				$('#missed').text(tracker.missed + " missed");
+			}
 			scene.remove(cubes[i])
 			cubes.splice(i, 1);
 		}else{
