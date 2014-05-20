@@ -116,6 +116,9 @@ $(window).load(function() {
             curr_xy[point_count<<1] = coords.x;
             curr_xy[(point_count<<1)+1] = coords.y;
             point_count++;
+            if ($('#trackStatus').prop('checked') === false){
+                $('#trackStatus').prop('checked', true);
+            }
         }
     }
     canvas.addEventListener('click', on_canvas_click, false);
@@ -128,6 +131,13 @@ $(window).load(function() {
     }
 
     function prune_oflow_points(ctx) {
+        if(point_count < 1){
+            if ($('#trackStatus').prop('checked') === true){
+                alert('Head tracker lost lock. Scroll up and lock again.');
+                $('#trackStatus').prop('checked', false);
+            }
+        }
+
         var n = point_count;
         var i=0,j=0;
 
