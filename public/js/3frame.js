@@ -55,6 +55,7 @@ var cubeMaker = function(pox, posy, posz, maxSize){
 var dropCubes = function(){
 	for (var i=0; i<cubes.length; i++){
 		if(cubes[i].position.z > camera.position.z){
+			scene.remove(cubes[i])
 			cubes.splice(i, 1);
 		}else{
 			cubes[i].translateZ(0.1);
@@ -78,7 +79,7 @@ var animate = function(){
 	dropCubes();
 	laser.moveProjectiles();
 	setCamPos();
-	camera.lookAt(scene.position);
+	camera.lookAt(scn);
 	light.position = camera.position;
 	renderer.render(scene, camera);
 	requestAnimationFrame(animate);

@@ -2,7 +2,7 @@ var laser = {};
 
 laser.projectiles = [];
 
-laser.velocity = 0.1;
+laser.velocity = 0.5;
 
 laser.getVector = function(){
 	var zVector = -camera.position.z;
