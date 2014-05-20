@@ -9,21 +9,28 @@ tracker.getCone = function(target){
 	var yMax = (target.position.y + 0.5) / z;
 	var yMin = (target.position.y - 0.5) / z;
 
-	xMax = room.width + (-xMax * projectionDistance);
-	xMin = room.width + (-xMin * projectionDistance);
-	yMax = room.width + (-yMax * projectionDistance);
-	yMin = room.width + (-yMin * projectionDistance);
+	xMax = roomData.width + (xMax * projectionDistance);
+	xMin = roomData.width + (xMin * projectionDistance);
+	yMax = roomData.width + (yMax * projectionDistance);
+	yMin = roomData.width + (yMin * projectionDistance);
 
-	var camPosX = camera.position.x + 100;
-	var camPosY = camera.position.y + 100;
+	var camPosX = camera.position.x + roomData.width;
+	var camPosY = camera.position.y + roomData.width;
 
-	if ((camPosX > xMin) && (camPosX < xMax) && (camPosY > yMin) && (camPosY < yMax)){
+	console.log(camPosX, xMin, xMax);
+	console.log(camPosY, yMin, yMax);
+
+	if ((camPosX < xMin) && (camPosX > xMax) && (camPosY < yMin) && (camPosY > yMax)){
 		console.log('target Destroyed!');
+		return true;
 	}
 }
 
 tracker.checkVectors = function(){
 	for(var i=0; i<cubes.length; i++){
-		tracker.getCone(cubes[i]);
+		if(tracker.getCone(cubes[i])){
+			scene.remove(cubes[i]);
+			cubes.splice(i, 1);
+		}
 	}
 }
