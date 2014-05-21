@@ -17,8 +17,14 @@
             </script>
         <h1>HeadShot.js</h1>
         <p>
-            To start with, you MUST be using Google Chrome and you MUST have a webcam. This will not work on another browser! When this page loads you'll have an option presented to you in a bar along the top to allow your browser to use your webcam. You also have to hit yes.
-            Now you should see a live video of yourself on the left. 
+            To start with, you MUST be using Google Chrome and you MUST have a webcam. This will not work on another browser! When this page loads you'll have an option presented to you in a bar along the top to allow your browser to use your webcam. You also have to hit yes. Now you should see a live video of yourself on the left. 
+        </p>
+        <p>
+            1. Make sure you've scrolled right to the top of the page, then click on any TWO contrasty parts of your face in the video frame to the left to activate tracking; nostrils work best--eyes sometimes blink too much. Green dots will appear where you clicked. These idicate a lock on your face, that the computer is tracking the position of your face relative to the camera. 
+        </p>
+        <p>
+            Naturally, it's best to do this when your face is brightly lit, or it'll be hard for the computer to track you. You can click as many times as you like until you've got two green dots tracking you reasonably reliably. 
+        </p>
     	<video id="webcam" width="640" height="480" style="display:none;"></video>
     	<div class="camContainer">
             <canvas id="canvas" width="640" height="480"></canvas>
@@ -27,10 +33,14 @@
                 
                 <div id="log" class="alert alert-info"></div>
                 <p>
-                    Click on any TWO contrasty parts of your face in the video frame to the left to activate tracking; nostrils work best--eyes sometimes blink too much. Green dots will appear where you clicked. These idicate a lock on your face, and are tracking the position of your face relative to the camera. Naturally, it's best to do this when your face is brightly lit, or it'll be hard for the computer to track you. You can click as many times as you like until you've got two green dots. When you're ready, scroll down and hit 0 (the actual key on your keyboard). 
+                    2. When you're ready, scroll right down to the bottom of the page and hit 0 (the actual key on your keyboard). 
                 </P>
                 <p>
-                    You should now see a giant moving grid below that changes perspective based on where your face it. To make this a bit more fun, hit 1 to instantiate some giant cubes that float towards you. When this gets dull, pick a difficulty by pressing ']' (for harder) or '[' (for easier). This will create floating cubes drifting towards you. You can shoot them by pressing the spacebar (yes, the one on your keyboard). Remember, you can't stray off camera! If you do, you'll have to scroll up and place the dots on your face again. 
+                    You should now see a giant moving grid below that changes perspective based on where your face is. To make this a bit more fun, hit 1 to instantiate some giant cubes that float towards you. 
+                    3. When this gets dull, pick a difficulty by pressing ']' (for harder) or '[' (for easier). This will create floating cubes drifting towards you. 
+                </p>
+                <p>
+                    4. You can shoot them by pressing the spacebar (yes, the one on your keyboard) and aim using the wireframe crosshairs in the middle. Remember, you can't stray off camera! If you do, you'll have to scroll up and place the dots on your face again. 
                 </p>
                  <div class="fb-share-button" data-href="http://headshotjs.azurewebsites.net/" data-type="button" style="float: right"></div>
                 <div class="onoffswitch">

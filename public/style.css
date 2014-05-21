@@ -17,7 +17,9 @@ h1{
     color: white;
     width: 300px;
 }
-.camContainer {
+p{
+    font-family: monospace;
+    color: white;
 }
 
 
