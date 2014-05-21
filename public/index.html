@@ -6,6 +6,15 @@
         <link rel='stylesheet' type='text/css' href='./style.css'>
     </head>
     <body>
+        <div id="fb-root"></div>
+            <script>(function(d, s, id) {
+                  var js, fjs = d.getElementsByTagName(s)[0];
+                  if (d.getElementById(id)) return;
+                  js = d.createElement(s); js.id = id;
+                  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.0";
+                  fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));
+            </script>
         <h1>HeadShot.js</h1>
     	<video id="webcam" width="640" height="480" style="display:none;"></video>
     	<div class="camContainer">
@@ -20,6 +29,7 @@
                 <p>
                     Got it? Pick a difficulty -- ']' for harder, '[' for easier -- and start shooting (spacebar to shoot). Or hit 1 to instantiate some targets for practice. Remember, you can't stray off camera!
                 </p>
+                 <div class="fb-share-button" data-href="http://headshotjs.azurewebsites.net/" data-type="button" style="float: right"></div>
                 <div class="onoffswitch">
                     <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="trackStatus" unchecked>
                     <label class="onoffswitch-label" for="trackStatus">
