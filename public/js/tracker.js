@@ -47,6 +47,8 @@ tracker.difficulty = 1;
 
 tracker.game;
 
+tracker.cancelId;
+
 tracker.play = function(){
 	tracker.stop();
 	tracker.game = setInterval(function(){

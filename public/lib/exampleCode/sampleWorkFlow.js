@@ -133,7 +133,8 @@ $(window).load(function() {
     function prune_oflow_points(ctx) {
         if(point_count < 1){
             if ($('#trackStatus').prop('checked') === true){
-                alert('Head tracker lost lock. Scroll up and lock again.');
+                window.cancelAnimationFrame(tracker.cancelId);
+                alert('Head tracker lost lock. Scroll up and lock again. Hit 0 when ready');
                 $('#trackStatus').prop('checked', false);
             }
         }
