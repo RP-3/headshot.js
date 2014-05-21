@@ -86,7 +86,7 @@ var animate = function(){
 	camera.lookAt(scn);
 	light.position = camera.position;
 	renderer.render(scene, camera);
-	requestAnimationFrame(animate);
+	tracker.cancelId = requestAnimationFrame(animate);
 }
 
 //change camera position based on input from extractedValues
